@@ -7,16 +7,7 @@ stack = "BEST_EFFORT_FALLBACK"
 channel = "stable-25_05"
 
 [workflows]
-runButton = "Project"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Desktop App"
+runButton = "Desktop App"
 
 [[workflows.workflow]]
 name = "Desktop App"
@@ -27,4 +18,4 @@ outputType = "vnc"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "bash -c 'EXEC=\"$(readlink -f \"$(command -v electron || true)\")\"; if [ -z \"$EXEC\" ] || [ ! -x \"$EXEC\" ]; then echo \"ERROR: Nix electron binary not found on PATH. Install the electron system dependency.\" >&2; exit 1; fi; export ELECTRON_EXEC_PATH=\"$EXEC\" NO_SANDBOX=1 HUSKY=0; cd apps/desktop && pnpm dev'"
+args = "bash -c 'EXEC=\"$(readlink -f \"$(command -v electron || true)\")\"; if [ -z \"$EXEC\" ] || [ ! -x \"$EXEC\" ]; then echo \"ERROR: Nix electron binary not found on PATH. Install the electron system dependency.\" >&2; exit 1; fi; export ELECTRON_EXEC_PATH=\"$EXEC\" NO_SANDBOX=1 HUSKY=0 npm_config_manage_package_manager_versions=false; [ -d node_modules ] || pnpm install --frozen-lockfile; cd apps/desktop && pnpm dev'"
