@@ -1,5 +1,5 @@
 {pkgs}: {
   deps = [
-    pkgs.electron
+    pkgs.electron_35
   ];
 }
