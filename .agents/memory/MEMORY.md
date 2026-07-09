@@ -1,0 +1,1 @@
+- [Electron on Replit/NixOS](electron-on-replit.md) — never run npm's prebuilt Electron; use Nix electron via ELECTRON_EXEC_PATH, NO_SANDBOX=1, HUSKY=0 installs, pnpm self-update disabled.
